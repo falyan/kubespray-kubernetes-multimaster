@@ -4,6 +4,15 @@ Kubernetes with ansible using Kubespray
 ## Topologi
 ![Alt text](image.png)
 
+- Minimum system requirements :
+installation with kubespray minimal master must 3 node and 3 worker, and for specification below
+
+| RAM    | CPU      | 
+| :---   | :------- | 
+| `4 GB` | `2 core` | 
+
+
+
 - List Server 
 
 | HOSTNAME    | IP            | KETERANGAN                                 |   OS             |
