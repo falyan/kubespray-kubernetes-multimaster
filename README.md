@@ -4,8 +4,8 @@ Kubernetes with ansible using Kubespray
 ## Topologi
 ![Alt text](image.png)
 
-- Minimum system requirements :</br>
-installation with kubespray minimal master must 3 node and 3 worker, and for specification below
+- Minimum system requirements </br>
+Installation with kubespray minimal 3 master node and 3 worker node, and for specification below:
 
 | RAM    | CPU      | 
 | :---   | :------- | 
@@ -24,3 +24,84 @@ installation with kubespray minimal master must 3 node and 3 worker, and for spe
 | `worker-01` | `10.10.90.55` | Worker                                     | Ubuntu 22.04 LTS |
 | `worker-02` | `10.10.90.56` | Worker                                     | Ubuntu 22.04 LTS |
 | `worker-03` | `10.10.90.57` | Worker                                     | Ubuntu 22.04 LTS |
+
+# Step 1 Setup load balancer for kube api server (master)
+
+```bash
+apt update
+apt install haproxy -y
+
+```
+- Configurasi for HAproxy
+
+```bash
+vim /etc/haproxy/haproxy.cfg
+```
+change and add your configuration like bellow
+
+```bash
+listen stats
+  bind    lb-cluster:9000
+  mode    http
+  stats   enable
+  stats   hide-version
+  stats   uri       /stats
+  stats   refresh   30s
+  stats   realm     Haproxy\ Statistics
+  stats   auth      Admin:Password
+
+#---------------------------------------------------------------------
+# apiserver frontend which proxys to the control plane nodes
+#---------------------------------------------------------------------
+frontend apiserver
+    bind lb-cluster:6443
+    mode tcp
+    option tcplog
+    default_backend apiserver
+
+#---------------------------------------------------------------------
+# round robin balancing for apiserver
+#---------------------------------------------------------------------
+backend apiserver
+    option httpchk GET /healthz
+    http-check expect status 200
+    mode tcp
+    option ssl-hello-chk
+    balance     roundrobin
+        server master-01 master-01:6443 check
+        server master-02 master-02:6443 check
+        server master-03 master-03:6443 check
+
+```
+- makesure your configuration is valid check with command bellow
+
+```bash
+haproxy -f /etc/haproxy/haproxy.cfg -c
+```
+- if valid restart your haproxy service
+```bash
+systemctl restart haproxy 
+systemctl status haproxy
+```
+- maksure your port 6443 is open, verification with command bellow
+```bash
+nc -vvvv lb-cluster 6443
+```
+
+# Kubespray installation and configuration (server deployer) 
+in this tutorial server deployer is lb-master, Make sure the deployer server can SSH without a password to all nodes (MANDATORY)</br>
+
+- Download kubespray on github
+```bash
+git clone https://github.com/kubernetes-sigs/kubespray
+```
+- Install package managemnet for python3 and library for manipulation network
+```bash 
+apt install python3-netaddr python3-pip -y
+```
+- install the required python packages
+
+```bash
+pip3 install -r requirements.txt
+```
+- 
