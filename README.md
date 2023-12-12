@@ -5,8 +5,9 @@ Kubernetes with ansible using Kubespray
 ![Alt text](image.png)
 
 - List Server 
-| HOSTNAME    | IP            | KETERANGAN                                 |   OS            |
-| :--------   | :-------      | :----------------------------------------- | :-------------- |
+
+| HOSTNAME    | IP            | KETERANGAN                                 |   OS             |
+| :--------   | :-------      | :----------------------------------------- | :--------------  |
 | `lb-master` | `10.10.90.51` | Load balance for kube api-server port 6443 | Ubuntu 22.04 LTS |
 | `master-01` | `10.10.90.52` | Controle plane                             | Ubuntu 22.04 LTS |
 | `master-02` | `10.10.90.53` | Controle plane                             | Ubuntu 22.04 LTS |
