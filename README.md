@@ -91,11 +91,11 @@ nc -vvvv lb-cluster 6443
 # Kubespray installation and configuration (server deployer) 
 in this tutorial server deployer is lb-master, Make sure the deployer server can SSH without a password to all nodes (MANDATORY)</br>
 
-- Download kubespray on github
+- Download kubespray on deployer server
 ```bash
 git clone https://github.com/kubernetes-sigs/kubespray
 ```
-- Install package managemnet for python3 and library for manipulation network
+- Install package management for python3 and library for manipulation network
 ```bash 
 apt install python3-netaddr python3-pip -y
 ```
@@ -104,4 +104,46 @@ apt install python3-netaddr python3-pip -y
 ```bash
 pip3 install -r requirements.txt
 ```
-- 
+- Copy directory sample to new directory (in this tutorial the name of directory is cluster01)
+```bash
+cd kubespray
+cp -rfp inventory/sample inventory/cluster01
+```
+- add config inventory playbooks
+```bash
+vi inventory/cluster01/inventory.ini
+``` 
+replace config bellow to inventory.ini
+```bash
+[all]
+master-01 ansible_host=10.10.90.52 
+master-02 ansible_host=10.10.90.53
+master-03 ansible_host=10.10.90.54
+worker-01 ansible_host=10.10.90.55
+worker-02 ansible_host=10.10.90.56
+worker-03 ansible_host=10.10.90.57
+
+[kube-master]
+master-01
+master-02
+master-03
+
+
+[etcd]
+master-01
+master-02
+master-03
+
+[kube-node]
+worker-01
+worker-02
+worker-03
+
+[calico_rr]
+
+[k8s-cluster:children]
+kube-master
+kube-node
+calico_rr
+
+```
