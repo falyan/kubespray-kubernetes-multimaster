@@ -172,6 +172,7 @@ loadbalancer_apiserver:
   port: "6443"
 
 ```
+- change configuration and find config bellow
 
 ```bash
 vim inventory/cluster01/group_vars/k8s_cluster/k8s-cluster.yml
@@ -184,3 +185,17 @@ kube_network_plugin: calico
 k8s_image_pull_policy: IfNotPresent
 supplementary_addresses_in_ssl_keys: [10.10.90.52, 10.10.90.53, 10.10.90.52, 10.10.90.51]
 ```
+# running palybook  
+before running playbook best practice is run tmux first for keep your session server
+```bash
+tmux
+```
+- run your playbooks to install your cluster
+```bash
+ansible-playbook -i inventory/cluster01/inventory.ini --become --become-user=root cluster.yml
+```
+
+this part will take a several minutes depent your connection
+
+## 🔗 About me
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/falyan-zuril-587585247/)
