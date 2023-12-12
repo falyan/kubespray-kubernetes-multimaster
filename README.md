@@ -128,7 +128,6 @@ master-01
 master-02
 master-03
 
-
 [etcd]
 master-01
 master-02
@@ -147,3 +146,9 @@ kube-node
 calico_rr
 
 ```
+
+- Verify connection all node from server deployer, t check the connectivity for the hosts in your inventory
+```bash
+ansible -m ping -i inventory/cluster01/inventory.ini --become --become-user=root all
+```
+if "SUCCESS" indicates that the host is reachable and "ping": "pong" indicates that the ping module was executed successfully on the remote host
