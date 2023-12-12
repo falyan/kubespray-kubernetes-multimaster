@@ -41,7 +41,7 @@ change and add your configuration like bellow
 
 ```bash
 listen stats
-  bind    lb-cluster:9000
+  bind    10.10.90.51:9000
   mode    http
   stats   enable
   stats   hide-version
@@ -54,7 +54,7 @@ listen stats
 # apiserver frontend which proxys to the control plane nodes
 #---------------------------------------------------------------------
 frontend apiserver
-    bind lb-cluster:6443
+    bind 10.10.90.51:6443
     mode tcp
     option tcplog
     default_backend apiserver
@@ -160,4 +160,15 @@ echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 - apply ip forwarding
 ```bash
 sysctl --system
+```
+- change configuration and search config bellow
+```bash
+vim inventory/cluster01/group_vars/all/all.yml
+```
+```bash
+bin_dir: /usr/local/bin
+loadbalancer_apiserver:
+  address: "10.10.90.51"
+  port: "6443"
+
 ```
