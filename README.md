@@ -89,7 +89,7 @@ nc -vvvv lb-cluster 6443
 ```
 
 # Kubespray installation and configuration (server deployer) 
-in this tutorial server deployer is lb-master, Make sure the deployer server can SSH without a password to all nodes (MANDATORY)</br>
+in this tutorial server deployer is lb-master (10.10.90.51), Make sure the deployer server can SSH without a password to all nodes (MANDATORY)</br>
 
 - Download kubespray on deployer server
 ```bash
