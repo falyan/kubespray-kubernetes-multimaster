@@ -152,3 +152,12 @@ calico_rr
 ansible -m ping -i inventory/cluster01/inventory.ini --become --become-user=root all
 ```
 if "SUCCESS" indicates that the host is reachable and "ping": "pong" indicates that the ping module was executed successfully on the remote host
+
+- set ip forwarding for allow the forwarding of IP packets between different network interfaces on the system **(DO ALL NODE)**
+```bash
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+```
+- apply ip forwarding
+```bash
+sysctl --system
+```
