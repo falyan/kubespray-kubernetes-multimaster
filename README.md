@@ -147,7 +147,7 @@ calico_rr
 
 ```
 
-- Verify connection all node from server deployer, t check the connectivity for the hosts in your inventory
+- Verify connection all node from server deployer, to check the connectivity for the hosts in your inventory
 ```bash
 ansible -m ping -i inventory/cluster01/inventory.ini --become --become-user=root all
 ```
