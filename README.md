@@ -161,7 +161,7 @@ echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 ```bash
 sysctl --system
 ```
-- change configuration and search config bellow
+- change configuration and find config bellow
 ```bash
 vim inventory/cluster01/group_vars/all/all.yml
 ```
@@ -171,4 +171,16 @@ loadbalancer_apiserver:
   address: "10.10.90.51"
   port: "6443"
 
+```
+
+```bash
+vim inventory/cluster01/group_vars/k8s_cluster/k8s-cluster.yml
+```
+
+```bash
+container_manager: containerd
+cluster_name: cluster.local
+kube_network_plugin: calico
+k8s_image_pull_policy: IfNotPresent
+supplementary_addresses_in_ssl_keys: [10.10.90.52, 10.10.90.53, 10.10.90.52, 10.10.90.51]
 ```
