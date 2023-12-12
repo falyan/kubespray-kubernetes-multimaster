@@ -68,9 +68,9 @@ backend apiserver
     mode tcp
     option ssl-hello-chk
     balance     roundrobin
-        server master-01 master-01:6443 check
-        server master-02 master-02:6443 check
-        server master-03 master-03:6443 check
+        server master-01 10.10.90.52:6443 check
+        server master-02 10.10.90.53:6443 check
+        server master-03 10.10.90.54:6443 check
 
 ```
 - makesure your configuration is valid check with command bellow
