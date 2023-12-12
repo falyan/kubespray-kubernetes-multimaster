@@ -17,13 +17,13 @@ Installation with kubespray minimal 3 master node and 3 worker node, and for spe
 
 | HOSTNAME    | IP            | KETERANGAN                                 |   OS             |
 | :--------   | :-------      | :----------------------------------------- | :--------------  |
-| `lb-master` | `10.10.90.51` | Load balance for kube api-server port 6443 | Ubuntu 22.04 LTS |
-| `master-01` | `10.10.90.52` | Controle plane                             | Ubuntu 22.04 LTS |
-| `master-02` | `10.10.90.53` | Controle plane                             | Ubuntu 22.04 LTS |
-| `master-03` | `10.10.90.54` | Controle plane                             | Ubuntu 22.04 LTS |
-| `worker-01` | `10.10.90.55` | Worker                                     | Ubuntu 22.04 LTS |
-| `worker-02` | `10.10.90.56` | Worker                                     | Ubuntu 22.04 LTS |
-| `worker-03` | `10.10.90.57` | Worker                                     | Ubuntu 22.04 LTS |
+| `lb-master` | `10.10.90.51` | Load balance for kube api-server port 6443 | Ubuntu 20.04 LTS |
+| `master-01` | `10.10.90.52` | Controle plane                             | Ubuntu 20.04 LTS |
+| `master-02` | `10.10.90.53` | Controle plane                             | Ubuntu 20.04 LTS |
+| `master-03` | `10.10.90.54` | Controle plane                             | Ubuntu 20.04 LTS |
+| `worker-01` | `10.10.90.55` | Worker                                     | Ubuntu 20.04 LTS |
+| `worker-02` | `10.10.90.56` | Worker                                     | Ubuntu 20.04 LTS |
+| `worker-03` | `10.10.90.57` | Worker                                     | Ubuntu 20.04 LTS |
 
 # Step 1 Setup load balancer for kube api server (master)
 
