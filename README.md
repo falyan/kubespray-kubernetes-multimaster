@@ -161,7 +161,7 @@ echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 ```bash
 sysctl --system
 ```
-- change configuration and find config bellow
+- change configuration group var and find config bellow
 ```bash
 vim inventory/cluster01/group_vars/all/all.yml
 ```
@@ -172,7 +172,7 @@ loadbalancer_apiserver:
   port: "6443"
 
 ```
-- change configuration and find config bellow
+- change configuration cluster and find config bellow
 
 ```bash
 vim inventory/cluster01/group_vars/k8s_cluster/k8s-cluster.yml
