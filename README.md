@@ -153,14 +153,6 @@ ansible -m ping -i inventory/cluster01/inventory.ini --become --become-user=root
 ```
 if "SUCCESS" indicates that the host is reachable and "ping": "pong" indicates that the ping module was executed successfully on the remote host
 
-- set ip forwarding for allow the forwarding of IP packets between different network interfaces on the system **(DO ALL NODE)**
-```bash
-echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
-```
-- apply ip forwarding
-```bash
-sysctl --system
-```
 - change configuration group var and find config bellow
 ```bash
 vim inventory/cluster01/group_vars/all/all.yml
@@ -185,7 +177,17 @@ kube_network_plugin: calico
 k8s_image_pull_policy: IfNotPresent
 supplementary_addresses_in_ssl_keys: [10.10.90.52, 10.10.90.53, 10.10.90.52, 10.10.90.51]
 ```
-# step 3 running palybook  
+
+# step 3 set ip forwarding all node
+- set ip forwarding for allow the forwarding of IP packets between different network interfaces on the system **(DO ALL NODE)**
+```bash
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+```
+- apply ip forwarding
+```bash
+sysctl --system
+```
+# step 4 running palybook  
 before running playbook best practice is run tmux first for keep your session server
 ```bash
 tmux
