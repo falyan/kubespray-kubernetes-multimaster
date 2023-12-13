@@ -88,7 +88,7 @@ systemctl status haproxy
 nc -vvvv lb-cluster 6443
 ```
 
-# Kubespray installation and configuration (server deployer) 
+# step 2 Kubespray installation and configuration (server deployer) 
 in this tutorial server deployer is lb-master (10.10.90.51), Make sure the deployer server can SSH without a password to all nodes (MANDATORY)</br>
 
 - Download kubespray on deployer server
@@ -185,7 +185,7 @@ kube_network_plugin: calico
 k8s_image_pull_policy: IfNotPresent
 supplementary_addresses_in_ssl_keys: [10.10.90.52, 10.10.90.53, 10.10.90.52, 10.10.90.51]
 ```
-# running palybook  
+# step 3 running palybook  
 before running playbook best practice is run tmux first for keep your session server
 ```bash
 tmux
